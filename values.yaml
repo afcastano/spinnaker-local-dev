@@ -1,0 +1,21 @@
+halyard:
+  spinnakerVersion: 1.16.1
+  additionalProfileConfigMaps:
+    create: true
+    data:
+      gate-local.yml: |-
+        security:
+          oauth2:
+            client:
+              clientId: dummy-client-id
+              clientSecret: dummy-client-secret
+              userAuthorizationUri: http://localhost:8282/auth/request/path
+              accessTokenUri: http://fake-oaut2.oauth2:8282/access/token/request
+              scope: []
+            resource:
+              userInfoUri: http://fake-oaut2.oauth2:8282/userInfo
+            userInfoMapping:
+              email: email
+              firstName: name
+              lastName: name
+              username: name

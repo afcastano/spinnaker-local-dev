@@ -15,9 +15,10 @@ It Involves:
 - Installing a docker registry to push your [Spinnaker](https://www.spinnaker.io/) modified images.
 - Install [Spinnaker](https://www.spinnaker.io/) using the new images you modified and defaulting to the public ones.
 
-Requirements:  
+Dependencies:  
 - Docker
 - [Multipass](https://multipass.run/)
+- Helm
 
 **Steps**
 
