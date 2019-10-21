@@ -1,0 +1,3 @@
+kk() {
+  kubectl --kubeconfig k3s.yaml $@
+}
