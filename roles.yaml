@@ -1,0 +1,10 @@
+users:  
+- username: andres
+  roles:
+  - group1
+  - group2
+- username: test
+  roles:
+  - group2
+  - group3
+  

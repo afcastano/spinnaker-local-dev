@@ -4,16 +4,21 @@ halyard:
     create: true
     data:
       gate-local.yml: |-
+        server:
+          tomcat:
+            protocolHeader: X-Forwarded-Proto
+            remoteIpHeader: X-Forwarded-For
+            internalProxies: .*
         security:
           oauth2:
             client:
               clientId: dummy-client-id
               clientSecret: dummy-client-secret
-              userAuthorizationUri: http://localhost:8282/auth/request/path
-              accessTokenUri: http://fake-oaut2.oauth2:8282/access/token/request
+              userAuthorizationUri: http://192.168.0.4:8282/auth/request/path
+              accessTokenUri: http://192.168.0.4:8282/access/token/request
               scope: []
             resource:
-              userInfoUri: http://fake-oaut2.oauth2:8282/userInfo
+              userInfoUri: http://192.168.0.4:8282/userInfo
             userInfoMapping:
               email: email
               firstName: name
