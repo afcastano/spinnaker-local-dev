@@ -3,7 +3,7 @@
 echo "Launching vm k3s-spin"
 multipass launch --name k3s-spin --cpus 4 --mem 8G --disk 20G
 echo "Installing k3s"
-multipass exec k3s-spin -- sh -c "curl -sfL https://get.k3s.io/ | sh -"
+multipass exec k3s-spin -- sh -c "curl -sfL https://get.k3s.io/ | INSTALL_K3S_VERSION=v0.9.1 sh -"
 echo "Copying kube config"
 multipass exec k3s-spin -- sh -c "sudo cp /etc/rancher/k3s/k3s.yaml . && sudo chmod a=r k3s.yaml"
 multipass copy-files k3s-spin:k3s.yaml k3s.yaml

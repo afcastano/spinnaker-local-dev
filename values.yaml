@@ -9,18 +9,18 @@ halyard:
             protocolHeader: X-Forwarded-Proto
             remoteIpHeader: X-Forwarded-For
             internalProxies: .*
-        security:
-          oauth2:
-            client:
-              clientId: dummy-client-id
-              clientSecret: dummy-client-secret
-              userAuthorizationUri: http://192.168.0.4:8282/auth/request/path
-              accessTokenUri: http://192.168.0.4:8282/access/token/request
-              scope: []
-            resource:
-              userInfoUri: http://192.168.0.4:8282/userInfo
-            userInfoMapping:
-              email: email
-              firstName: name
-              lastName: name
-              username: name
+        # security:
+        #   oauth2:
+        #     client:
+        #       clientId: dummy-client-id
+        #       clientSecret: dummy-client-secret
+        #       userAuthorizationUri: http://192.168.0.4:8282/auth/request/path
+        #       accessTokenUri: http://192.168.0.4:8282/access/token/request
+        #       scope: []
+        #     resource:
+        #       userInfoUri: http://192.168.0.4:8282/userInfo
+        #     userInfoMapping:
+        #       email: email
+        #       firstName: name
+        #       lastName: name
+        #       username: name
