@@ -1,11 +1,10 @@
 spring:
+  profiles:
+    include: git
   cloud:
     config:
       server:
-        composite:
-          - type: native
-            search-locations: ${user.home}/config
-          - type: git
-            uri: https://github.com/spring-cloud-samples/config-repo.git
+        git:
+            uri: https://github.com/afcastano/spinnaker-local-dev.git
             basedir: /tmp/config-repo
             refresh-rate: 10
