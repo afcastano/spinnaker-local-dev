@@ -1,0 +1,19 @@
+kubernetes:
+  enabled: true
+  accounts:
+  - name: k8s-v2-acc-1
+    requiredGroupMembership: []
+    providerVersion: V2
+    permissions: {}
+    dockerRegistries: []
+    configureImagePullSecrets: true
+    namespaces: []
+    omitNamespaces: []
+    kinds: []
+    omitKinds: []
+    customResources: []
+    cachingPolicies: []
+    kubeconfigFile: /home/spinnaker/k3s.yaml
+    checkPermissionsOnStartup: false
+    oAuthScopes: []
+    onlySpinnakerManaged: false
