@@ -29,6 +29,7 @@ brew cask install multipass
 2. Run `1-install_k3s.sh` to install k3s in Multipass and configure spinnaker there.
 
 Pending
+===========
 Install docker registry in k3s https://itnext.io/setup-a-private-registry-on-k3s-f30404f8e4d3
 Enable insecure registry support: https://github.com/rancher/k3s/issues/145
 Push fake-oauth to docker registry
