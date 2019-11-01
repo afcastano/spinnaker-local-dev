@@ -18,7 +18,6 @@ It Involves:
 Dependencies:  
 - Docker
 - [Multipass](https://multipass.run/)
-- Helm
 
 **Steps**
 
@@ -26,20 +25,12 @@ Dependencies:
 ```
 brew cask install multipass
 ```
-2. Run `1-install_k3s.sh` to install k3s in Multipass and configure spinnaker there.
+2. Run `make` for the available options.
 
 Pending
 ===========
-- Install docker registry in k3s https://itnext.io/setup-a-private-registry-on-k3s-f30404f8e4d3
-- Enable insecure registry support: https://github.com/rancher/k3s/issues/145
-- Push fake-oauth to docker registry
-- deploy fake-oauth to k3s
-- configure spinnaker to use fake oauth
+- Run fake oauth server.
+- Install and configure local docker registry
+- Configure custom roles and users for testing.
+- Automaticaly use custom images pushed to the local registry
 
-- Check override base url for auth to work in spinnaker: https://www.spinnaker.io/setup/quickstart/faq/#i-want-to-expose-localdebian-spinnaker-on-a-public-ip-address-but-it-always-binds-to-localhost
-
-- Local roles: 
-https://kb.armory.io/troubleshooting/file-based-authorization/
-
-- Custom images:
-https://medium.com/@sergiipikhterev/creating-custom-docker-images-for-spinnaker-components-f2e41e13db1a

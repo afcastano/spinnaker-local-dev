@@ -1,8 +1,10 @@
 #!/bin/sh
+set -ue
+. ./0-common.sh
 
-echo "Deleting k3s-spin instance"
+trace "Deleting k3s-spin instance"
 multipass delete k3s-spin
 multipass purge
 multipass list
-[ -f k3s.yaml ] && rm k3s.yaml
-echo "Done"
+rm -rf out
+info "Done"
