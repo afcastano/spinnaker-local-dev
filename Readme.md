@@ -18,6 +18,7 @@ It Involves:
 Dependencies:  
 - Docker
 - [Multipass](https://multipass.run/)
+- jq
 
 **Steps**
 
@@ -33,4 +34,8 @@ Pending
 - Install and configure local docker registry
 - Configure custom roles and users for testing.
 - Automaticaly use custom images pushed to the local registry
+
+Nice to have
+============
+- Reduce local dependencies list.
 

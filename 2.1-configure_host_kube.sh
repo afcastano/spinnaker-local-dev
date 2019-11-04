@@ -13,7 +13,6 @@ configureKubectl() {
     
     info "Local kube configured. Update your KUBECONFIG:"
     echo "${white}export KUBECONFIG=${cyan}$(pwd)/$K3S_CONFIG${reset}"
-    exit 0
 }
 
 configureKubectl

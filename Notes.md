@@ -16,3 +16,12 @@ https://medium.com/@sergiipikhterev/creating-custom-docker-images-for-spinnaker-
 
 
 - Enable insecure registry support: https://github.com/rancher/k3s/issues/145 or https://github.com/rancher/k3d/blob/master/docs/examples.md
+
+
+
+
+TODO
+======
+- Remove make file.
+    - Call all of the scripts from host.
+    - If a script need to be run from within multipass, pass a flag indicating it.

@@ -1,4 +1,7 @@
 #!/bin/sh
+
+# Kubectl should be already configured. To be run inside multipass
+
 set -u
 . ./0-common.sh
 

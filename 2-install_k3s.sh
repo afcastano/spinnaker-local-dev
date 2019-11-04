@@ -1,4 +1,7 @@
 #!/bin/sh
+
+# This script should be run inside multipass
+
 set -u
 . ./0-common.sh
 
@@ -23,7 +26,7 @@ installHelm() {
     else
         trace "Installing helm ..."
         curl -sLo $OUT_DIR/helm-v2.15.2-linux-amd64.tar.gz https://get.helm.sh/helm-v2.15.2-linux-amd64.tar.gz
-        tar -zxvf $OUT_DIR/helm-v2.15.2-linux-amd64.tar.gz -C $OUT_DIR
+        tar -zxvf $OUT_DIR/helm-v2.15.2-linux-amd64.tar.gz  --no-same-owner -C $OUT_DIR
         sudo mv $OUT_DIR/linux-amd64/helm /usr/local/bin/helm
     fi    
 }
@@ -55,10 +58,10 @@ printAllResources() {
         trace "----------"
         info "k3s configured correctly:"
         echo "${white}export KUBECONFIG=${cyan}$K3S_CONFIG${reset}"
-        exit 0
-    fi
-    error "Error configuring k3s"
-    exit 1
+    else
+        error "Error configuring k3s"
+        exit 1
+    fi    
 }
 
 
