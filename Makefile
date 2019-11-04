@@ -21,6 +21,9 @@ install-spinnaker: install-k3s ## Install spinnaker using the helm chart
 
 enable-fake-oauth: ## Enables fake oauth in spinnaker
 	sh 3.1-fake_oauth.sh
+
+disable-fake-oauth: ## Enables fake oauth in spinnaker
+	sh 3.1-fake_oauth.sh -d
 	
 delete-spinnaker: ## Deletes the spinnaker instance in k3s
 	$(call multipassExec, ./98-delete-spinnaker.sh)
