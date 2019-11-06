@@ -17,7 +17,8 @@ install-k3s: start-multipass ## Installs k3s in the multipass instance
 	sh 2.1-configure_host_kube.sh
 
 install-spinnaker: ## Install spinnaker using the helm chart
-	$(call multipassExec,./3-install_spinnaker.sh)
+	$(call multipassExec, ./3-spinnaker.sh -i)
+	sh 3-spinnaker.sh -f
 
 enable-fake-oauth: ## Enables fake oauth in spinnaker
 	sh 3.1-fake_oauth.sh
@@ -26,7 +27,8 @@ disable-fake-oauth: ## Disables fake oauth in spinnaker
 	sh 3.1-fake_oauth.sh -d
 	
 delete-spinnaker: ## Deletes the spinnaker instance in k3s
-	$(call multipassExec,./3-install_spinnaker.sh -d)
+	sh 3-spinnaker.sh -s
+	$(call multipassExec,./3-spinnaker.sh -d)
 
 clean-up: ## Deletes the multipass vm and everything inside.
 	sh 99-clean_up.sh

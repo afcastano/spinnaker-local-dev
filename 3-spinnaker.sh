@@ -2,7 +2,6 @@
 
 # Kubectl should be already configured. To be run inside multipass
 
-set -u
 . ./0-common.sh
 
 CHART=$OUT_DIR/spinnaker-1.16.1.tgz
@@ -47,7 +46,7 @@ installSpinnaker() {
 
 deleteSpinnaker() {
     local isRunning="$(spinnakerRunning)"
-    if [ "$isRunning" = "true" ]
+    if [ "$isRunning" = "false" ]
     then
         trace "Deleting spinnaker..."
         kubectl delete namespace $NAMESPACE
@@ -56,12 +55,57 @@ deleteSpinnaker() {
     fi
 }
 
-ACTION=installSpinnaker
-while getopts 'd' c
+portForwardSpinnaker() {
+    kubectl -n spin port-forward service/spin-gate 8084 &
+    echo $! > $OUT_DIR/gate.pid
+    info "Gate running at http://localhost:8084..."
+    kubectl -n spin port-forward service/spin-deck 9000 &
+    echo $! > $OUT_DIR/deck.pid
+    info "Spinnaker running at http://localhost:9000..."
+}
+
+stopPortForwardSpinnaker() {
+    trace "Stopping gate port forward..."
+    kill -9 $(cat ${OUT_DIR}/gate.pid)
+    rm ${OUT_DIR}/gate.pid
+
+    trace "Stopping deck port forward..."
+    kill -9 $(cat ${OUT_DIR}/deck.pid)
+    rm ${OUT_DIR}/deck.pid
+
+    info "Spinnaker port forward stopped"
+}
+
+unset INSTALL
+unset DELETE
+unset STOP_PORT_FORWARD
+unset PORT_FORWARD
+
+while getopts 'idsf' c
 do
   case $c in
-    d) ACTION=deleteSpinnaker ;;
+    i) INSTALL=true ;;
+    d) DELETE=true ;;
+    s) STOP_PORT_FORWARD=true ;;      
+    f) PORT_FORWARD=true ;;      
   esac
 done
 shift $((OPTIND-1))
-$ACTION $@
+
+if [ $INSTALL ]; then
+  installSpinnaker
+fi
+
+if [ $DELETE ]; then
+  deleteSpinnaker
+fi
+
+if [ $STOP_PORT_FORWARD ]; then
+  stopPortForwardSpinnaker
+fi
+
+if [ $PORT_FORWARD ]; then
+  portForwardSpinnaker
+fi
+
+
