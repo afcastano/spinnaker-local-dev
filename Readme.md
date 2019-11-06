@@ -30,10 +30,8 @@ brew cask install multipass
 
 Pending
 ===========
-- Run fake oauth server.
 - Install and configure local docker registry
 - Configure custom roles and users for testing.
-- Automaticaly use custom images pushed to the local registry
 
 Nice to have
 ============

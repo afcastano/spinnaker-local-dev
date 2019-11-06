@@ -6,8 +6,7 @@ help: ## This help
 	echo ""
 	echo "\033[0mTargets:"
 	echo "----------------"
-	awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z0-9_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
-
+	awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z0-9%_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 start-multipass: ## Creates a multipass VM and starts it.
 	sh 1-start_multipass.sh
@@ -29,6 +28,12 @@ disable-fake-oauth: ## Disables fake oauth in spinnaker
 delete-spinnaker: ## Deletes the spinnaker instance in k3s
 	sh 3-spinnaker.sh -s
 	$(call multipassExec,./3-spinnaker.sh -d)
+
+stop-spinnaker: ## Stops spinnaker port fowarding
+	sh 3-spinnaker.sh -s
+
+override-%: ## Override the generic target. Requieres IMAGE environment variable.
+	$(call multipassExec,./3.2-override_services.sh $* ${IMAGE})
 
 clean-up: ## Deletes the multipass vm and everything inside.
 	sh 99-clean_up.sh

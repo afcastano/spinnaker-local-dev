@@ -3,6 +3,8 @@ OUT_DIR=out
 K3S_CONFIG=$OUT_DIR/k3s.yaml
 NAMESPACE="${NAMESPACE:-spin}"
 
+export KUBECONFIG=$K3S_CONFIG
+
 cyan='\033[36m'
 white='\033[1m'
 green='\033[32m'
