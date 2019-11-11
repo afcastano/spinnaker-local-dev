@@ -17,10 +17,12 @@ install-k3s: start-multipass ## Installs k3s in the multipass instance
 
 install-spinnaker: ## Install spinnaker using the helm chart
 	$(call multipassExec, ./3-spinnaker.sh -i)
-	sh 3-spinnaker.sh -f
 
 enable-fake-oauth: ## Enables fake oauth in spinnaker
 	sh 3.1-fake_oauth.sh
+
+enable-gcb: ## Enables gcb in spinnaker. Requires: $ACCOUNT_NAME, $PROJECT_ID, $SUBSCRIPTION_NAME, $SERVICE_ACCOUNT_KEY
+	$(call multipassExec, ./3.2-gcb.sh -e ${ACCOUNT_NAME} ${PROJECT_ID} ${SUBSCRIPTION_NAME} ${SERVICE_ACCOUNT_KEY})
 
 disable-fake-oauth: ## Disables fake oauth in spinnaker
 	sh 3.1-fake_oauth.sh -d
@@ -29,7 +31,10 @@ delete-spinnaker: ## Deletes the spinnaker instance in k3s
 	sh 3-spinnaker.sh -s
 	$(call multipassExec,./3-spinnaker.sh -d)
 
-stop-spinnaker: ## Stops spinnaker port fowarding
+port-forward: ## Port forwards spinnaker
+	sh 3-spinnaker.sh -f
+
+stop-port-forward: ## Stops spinnaker port fowarding
 	sh 3-spinnaker.sh -s
 
 override-%: ## Override the generic target. Requieres IMAGE environment variable.

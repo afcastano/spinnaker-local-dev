@@ -1,0 +1,32 @@
+{
+  "isNew": true,
+  "keepWaitingPipelines": false,
+  "lastModifiedBy": "anonymous",
+  "limitConcurrent": true,
+  "stages": [
+    {
+      "account": "test1",
+      "application": "my-test",
+      "buildDefinition": {
+        "steps": [
+          {
+            "args": [
+              "bash",
+              "-c",
+              "echo from spinny"
+            ],
+            "name": "ubuntu"
+          }
+        ]
+      },
+      "buildDefinitionSource": "text",
+      "isNew": true,
+      "name": "Google Cloud Build",
+      "refId": "1",
+      "requisiteStageRefIds": [],
+      "type": "googleCloudBuild"
+    }
+  ],
+  "triggers": [],
+  "updateTs": "1573453391000"
+}

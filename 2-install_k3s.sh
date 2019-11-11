@@ -14,6 +14,7 @@ installK3s() {
     else
         trace "Installing k3s ..."
         curl -sfL https://get.k3s.io/ | INSTALL_K3S_VERSION=v0.9.1 sh -
+        cp /etc/rancher/k3s/k3s.yaml $K3S_CONFIG
     fi    
 }
 
