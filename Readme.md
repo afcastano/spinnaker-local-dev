@@ -19,6 +19,7 @@ Dependencies:
 - Docker
 - [Multipass](https://multipass.run/)
 - jq
+- internet connectivity during installation. If you intend to run this from behind a corporate proxy, you may be unable to pull the required images for k3s or Spinnaker. Also you may need to disable any desktop firewalls which are running whilst you perform the installation. 
 
 **Steps**
 
